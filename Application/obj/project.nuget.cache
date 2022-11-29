@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "7pEelxFvNVnq4FO09u0pmflebDobjllRJJf8VsBn+exj695jt5gFUwR5ReWepbwL+fhwqWjn+CeLcEzmzJMB8w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\wagne\\OneDrive\\Documents\\PUC\\Puc.Tcc.GISA\\Puc.Tcc.GISA\\Application\\Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\wagne\\.nuget\\packages\\bogus\\34.0.2\\bogus.34.0.2.nupkg.sha512",
+    "C:\\Users\\wagne\\.nuget\\packages\\confluent.kafka\\1.9.3\\confluent.kafka.1.9.3.nupkg.sha512",
+    "C:\\Users\\wagne\\.nuget\\packages\\librdkafka.redist\\1.9.2\\librdkafka.redist.1.9.2.nupkg.sha512",
+    "C:\\Users\\wagne\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\wagne\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\wagne\\.nuget\\packages\\system.memory\\4.5.0\\system.memory.4.5.0.nupkg.sha512",
+    "C:\\Users\\wagne\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512"
+  ],
+  "logs": []
+}
