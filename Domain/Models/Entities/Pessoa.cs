@@ -19,7 +19,7 @@ namespace Domain.Entities
         public string Endereco { get; private set; }
         public Formacao Formacao { get; private set; }
         public DateTime DataInclusao { get; private set; }
-        public DateTime DataAlteracao { get; private set; }
+        public DateTime DataAlteracao { get; private set; } 
 
         public void SetFormacao(string instituicao, string curso, TipoFormacao tipoFormacao)
         {

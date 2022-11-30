@@ -11,11 +11,7 @@ namespace Infrastructure.Kafka.KafkaProducer
         {
             var producerConfig = new ProducerConfig()
             {
-                BootstrapServers = "localhost:9092",
-                SecurityProtocol = SecurityProtocol.SaslSsl,
-                SaslMechanism = SaslMechanism.Plain,
-                SaslUsername = "User",
-                SaslPassword = "Password"
+                BootstrapServers = "localhost:9092"
             };
 
             _producer = producerBuilder.Build(producerConfig);

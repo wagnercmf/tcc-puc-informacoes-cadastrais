@@ -5,27 +5,20 @@ using Domain.Entities;
 using Domain.Services.Interfaces;
 using Infrastructure.Kafka.KafkaProducer;
 using Infrastructure.Repositories;
-using System.Text.Json;
 
 namespace Application.UseCases
 {
-    public class RegistrarAtendimentoUseCase : IRegistrarAtendimentoUseCase
+    public class CalcularValorCorpaticipacaoDoAtendimentoUseCase : ICalcularValorCorpaticipacaoDoAtendimentoUseCase
     {
         private readonly IPrestadorRepository _prestadorRepository; 
         private readonly IAssociadoRepository _associadoRepository;
-        private readonly IAtendimentoRepository _atendimentoRepository;
-        private readonly IKafkaProducer _kafkaProducer;
-        private const string topicoAtendimentoRealizado = "antendimento-realizado";
-        public RegistrarAtendimentoUseCase(IPrestadorRepository prestadorRepository, IAssociadoRepository associadoRepository, 
-            IAtendimentoRepository atendimentoRepository,IKafkaProducer kafkaProducer)
+        public CalcularValorCorpaticipacaoDoAtendimentoUseCase(IPrestadorRepository prestadorRepository, IAssociadoRepository associadoRepository)
         {
             _prestadorRepository = prestadorRepository;
             _associadoRepository = associadoRepository;
-            _atendimentoRepository = atendimentoRepository;
-            _kafkaProducer = kafkaProducer;
         }
 
-        public async Task<bool> ExecuteAsync(AtendimentoInput atendimentoInput)
+        public async Task<double> ExecuteAsync(AtendimentoInput atendimentoInput)
         {
             try
             {
@@ -33,15 +26,11 @@ namespace Application.UseCases
                 var associado = await _associadoRepository.GetAssociadoPorCpf(atendimentoInput.CpfAssociado);
 
                 if (associado == null || prestador == null)
-                    return false;
+                    throw new Exception("Associado ou prestado não existem");
 
                 var atendimento = new Atendimento(prestador, associado, DateTime.Now, atendimentoInput.ValorConsulta);
-                atendimento.CalcularValorCoparticipacao();
 
-                await _atendimentoRepository.RegistrarAtendimento(atendimento);
-                await _kafkaProducer.ProduceAsync(new Message<string, string> { Value = JsonSerializer.Serialize(atendimentoInput) }, topicoAtendimentoRealizado);
-
-                return true;
+                return atendimento.ValorCopartipacao;
             }
             catch (Exception ex)
             {

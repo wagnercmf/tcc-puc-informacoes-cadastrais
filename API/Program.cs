@@ -16,6 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IRegistrarAtendimentoUseCase, RegistrarAtendimentoUseCase>();
 builder.Services.AddScoped<IGetPrestadoresPorEspecialidadeUseCase, GetPrestadoresPorEspecialidadeUseCase>();
+builder.Services.AddScoped<ICalcularValorCorpaticipacaoDoAtendimentoUseCase, CalcularValorCorpaticipacaoDoAtendimentoUseCase>();
 builder.Services.AddScoped<IPrestadorRepository, PrestadorRepository>();
 builder.Services.AddScoped<IAtendimentoRepository, AtendimentoRepository>();
 builder.Services.AddScoped<IAssociadoRepository, AssociadoRepository>();

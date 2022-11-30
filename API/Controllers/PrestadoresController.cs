@@ -1,4 +1,6 @@
 using Application.Interfaces;
+using Application.Models;
+using Application.UseCases;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -44,6 +46,27 @@ namespace API.Controllers
             catch(Exception ex)
             {
                 _logger.LogError($"[GetPrestadorPorEspecialidade] Erro ao buscar prestador: {ex}");
+                return StatusCode(500);
+            }
+        }
+
+        [HttpPost()]
+        public async Task<IActionResult> PostPrestador(PrestadorInput input)
+        {
+            try
+            {
+                if (!input.IsValid())
+                {
+                    _logger.LogWarning($"[PostPrestador]Prestador com dados inválidos.");
+                    return BadRequest("Prestador com dados inválidos");
+                }
+
+                //Executar Use Case de Persistir na Base 
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"[PostPrestador] Erro ao criar atendimento: {ex}");
                 return StatusCode(500);
             }
         }

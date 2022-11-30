@@ -14,12 +14,11 @@
         public Associado Associado { get; set; }
         public DateTime DataAtendimento { get; set; }
         public double ValorConsulta { get; set; }
-        public double ValorCopartipacao { get; set; }
+        public double ValorCopartipacao { get { return CalcularValorCoparticipacao(); } }
 
         public double CalcularValorCoparticipacao()
         {
-            ValorCopartipacao = Associado.CalcularValorCoparticipacaoConsulta(ValorConsulta);
-            return ValorCopartipacao;
+            return Associado.CalcularValorCoparticipacaoConsulta(ValorConsulta);
         }
     }
 }

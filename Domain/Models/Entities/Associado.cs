@@ -15,12 +15,12 @@ namespace Domain.Entities
 
         public void SetPlanoSaude(TipoPlano tipoPlano, StatusPlano statusPlano, FaixaEtaria faixaEtaria, ClassificacaoPlano classificacaoPlano, bool planoOdontologico)
         {
-            new PlanoSaude(tipoPlano, statusPlano, faixaEtaria, classificacaoPlano, planoOdontologico);
+            PlanoSaude = new PlanoSaude(tipoPlano, statusPlano, faixaEtaria, classificacaoPlano, planoOdontologico);
         }
 
         public void SetInformacoesSaude(string instituicao, Frequencia frequenciaFumar, Frequencia frequenciaConsumoAlcool, List<string> doencas)
         {
-            new Saude(instituicao, frequenciaFumar, frequenciaConsumoAlcool, doencas);
+            Saude = new Saude(instituicao, frequenciaFumar, frequenciaConsumoAlcool, doencas);
         }
 
         public double CalcularMensalidadePlano()
