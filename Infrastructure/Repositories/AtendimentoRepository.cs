@@ -9,7 +9,7 @@ namespace Infrastructure.Repositories
     {
         public async Task RegistrarAtendimento(Atendimento atendimento)
         {
-            //DoNothing
+            //Salvar No Banco de Dados
         }
     }
 }

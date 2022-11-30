@@ -22,5 +22,11 @@ namespace Infrastructure.Repositories
                 return prestadores.Where(x => x.Documento == cpf).ToList().FirstOrDefault();
             return null;
         }
+
+        public async Task SalvarPrestador(Prestador prestador)
+        {
+            //Salvar No Banco de Dados
+        }
+
     }
 }

@@ -12,12 +12,15 @@ namespace API.Controllers
     {
         private readonly ILogger<PrestadoresController> _logger;
         private readonly IGetPrestadoresPorEspecialidadeUseCase _getPrestadoresPorEspecialidadeUseCase;
+        private readonly ICadastrarPrestadorUseCase _cadastrarPrestadorUseCase;
 
-        public PrestadoresController(IGetPrestadoresPorEspecialidadeUseCase getPrestadoresUseCase, 
+        public PrestadoresController(IGetPrestadoresPorEspecialidadeUseCase getPrestadoresUseCase,
+            ICadastrarPrestadorUseCase cadastrarPrestadorUseCase,
             ILogger<PrestadoresController> logger)
         {
             _logger = logger;
             _getPrestadoresPorEspecialidadeUseCase = getPrestadoresUseCase;
+            _cadastrarPrestadorUseCase = cadastrarPrestadorUseCase;
         }
 
         [HttpGet("{especialidade}")]
@@ -61,8 +64,8 @@ namespace API.Controllers
                     return BadRequest("Prestador com dados inválidos");
                 }
 
-                //Executar Use Case de Persistir na Base 
-                return Ok();
+                var prestadorCadastrado = _cadastrarPrestadorUseCase.ExecuteAsync(input);
+                return Ok(prestadorCadastrado);
             }
             catch (Exception ex)
             {
