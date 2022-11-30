@@ -39,7 +39,7 @@ namespace Application.UseCases
                 atendimento.CalcularValorCoparticipacao();
 
                 await _atendimentoRepository.RegistrarAtendimento(atendimento);
-                await _kafkaProducer.ProduceAsync(new Message<string, string> { Value = JsonSerializer.Serialize(atendimentoInput) }, topicoAtendimentoRealizado);
+                await _kafkaProducer.ProduceAsync(new Message<string, string> { Value = JsonSerializer.Serialize(atendimento) }, topicoAtendimentoRealizado);
 
                 return true;
             }

@@ -4,7 +4,6 @@ using Domain.Services.Interfaces;
 using Infrastructure.Kafka.KafkaProducer.ProducerBuilder;
 using Infrastructure.Kafka.KafkaProducer;
 using Infrastructure.Repositories;
-using Confluent.Kafka;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
