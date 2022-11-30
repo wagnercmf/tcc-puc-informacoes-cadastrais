@@ -17,22 +17,23 @@ namespace Domain.Entities
         public TipoPlano TipoPlano { get; set; }
         public StatusPlano StatusPlano { get; set; }
         public FaixaEtaria FaixaEtaria { get; set; }
-        public double ValorMensalidade { get; set; }
+        public double ValorMensalidade { get { return CalcularValorMensalidade(); } }
         public double ValorCopartipacao { get; set; } = 0.3;
         public ClassificacaoPlano ClassificacaoPlano { get; set; }
         public bool PlanoOdontologico { get; set; }
 
         public double CalcularValorMensalidade()
         {
-            if(ClassificacaoPlano == ClassificacaoPlano.Enfermaria) 
-                ValorMensalidade = (int)FaixaEtaria;
+            double valorMensalidade = default;
+            if(ClassificacaoPlano == ClassificacaoPlano.Enfermaria)
+                valorMensalidade = (int)FaixaEtaria;
             if (ClassificacaoPlano == ClassificacaoPlano.Apartamento)
-                ValorMensalidade = (int)FaixaEtaria*(double)1.5;
-            if (ClassificacaoPlano == ClassificacaoPlano.Apartamento)
-                ValorMensalidade = (int)FaixaEtaria*3;
+                valorMensalidade = (int)FaixaEtaria*(double)1.5;
+            if (ClassificacaoPlano == ClassificacaoPlano.Vip)
+                valorMensalidade = (int)FaixaEtaria*3;
             if (PlanoOdontologico && ClassificacaoPlano != ClassificacaoPlano.Vip)
-                ValorMensalidade = ValorMensalidade * (double)1.15;
-            return ValorMensalidade;
+                valorMensalidade = ValorMensalidade * (double)1.15;
+            return valorMensalidade;
         }
 
         public double CalcularValorCoparticipacaoConsulta(double valorConsulta)

@@ -34,6 +34,7 @@ namespace Application.UseCases
                     return false;
 
                 var atendimento = new Atendimento(prestador, associado, DateTime.Now, atendimentoInput.ValorConsulta);
+                atendimento.CalcularValorCoparticipacao();
 
                 await _atendimentoRepository.RegistrarAtendimento(atendimento);
                 await _kafkaProducer.ProduceAsync(new Message<string, string> { Value = "Teste" }, "antendimento-realizado");
