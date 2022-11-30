@@ -5,6 +5,8 @@ using Infrastructure.Kafka.KafkaProducer.ProducerBuilder;
 using Infrastructure.Kafka.KafkaProducer;
 using Infrastructure.Repositories;
 using Confluent.Kafka;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +15,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IRegistrarAtendimentoUseCase, RegistrarAtendimentoUseCase>();
 builder.Services.AddScoped<IGetPrestadoresPorEspecialidadeUseCase, GetPrestadoresPorEspecialidadeUseCase>();
 builder.Services.AddScoped<ICalcularValorCorpaticipacaoDoAtendimentoUseCase, CalcularValorCorpaticipacaoDoAtendimentoUseCase>();
@@ -22,6 +23,19 @@ builder.Services.AddScoped<IAtendimentoRepository, AtendimentoRepository>();
 builder.Services.AddScoped<IAssociadoRepository, AssociadoRepository>();
 builder.Services.AddSingleton<IKafkaProducer, KafkaProducer>();
 builder.Services.AddSingleton<IProducerBuilder, KafkaProducerBuilder>();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Informações Cadastrais API"
+
+    });
+
+    // using System.Reflection;
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+});
 
 var app = builder.Build();
 

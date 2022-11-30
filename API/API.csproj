@@ -18,6 +18,10 @@
     <Folder Include="DependencyInjection\" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
   </ItemGroup>
