@@ -1,5 +1,4 @@
-﻿using Domain.ValueObjects;
-
+﻿
 namespace Domain.Entities
 {
     public class Prestador : Pessoa
@@ -11,5 +10,6 @@ namespace Domain.Entities
         }
 
         public string Especialidade { get; private set; }
+
     }
 }

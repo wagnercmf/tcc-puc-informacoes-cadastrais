@@ -17,6 +17,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IRegistrarAtendimentoUseCase, RegistrarAtendimentoUseCase>();
 builder.Services.AddScoped<IGetPrestadoresPorEspecialidadeUseCase, GetPrestadoresPorEspecialidadeUseCase>();
 builder.Services.AddScoped<IPrestadorRepository, PrestadorRepository>();
+builder.Services.AddScoped<IAtendimentoRepository, AtendimentoRepository>();
+builder.Services.AddScoped<IAssociadoRepository, AssociadoRepository>();
 builder.Services.AddSingleton<IKafkaProducer, KafkaProducer>();
 builder.Services.AddSingleton<IProducerBuilder, KafkaProducerBuilder>();
 

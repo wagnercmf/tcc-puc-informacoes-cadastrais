@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces;
+using Application.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -18,16 +19,22 @@ namespace API.Controllers
         }
 
         [HttpPost()]
-        public async Task<IActionResult> PostAtendimento(string especialidade)
+        public async Task<IActionResult> PostAtendimento(AtendimentoInput input)
         {
             try
             {
-                await _registrarAtendimentoUseCase.ExecuteAsync("Tchubla");
-                return Ok();
+                if (!input.IsValid())
+                {
+                    _logger.LogWarning($"[PostAtendimento]Atendimento com dados inválidos.");
+                    return BadRequest("Atendimento com dados inválidos");
+                }
+
+                var atendimentoCriado = await _registrarAtendimentoUseCase.ExecuteAsync(input);
+                return Ok(atendimentoCriado);
             }
             catch (Exception ex)
             {
-                _logger.LogError($"[GetPrestadorPorEspecialidade] Erro ao buscar prestador: {ex}");
+                _logger.LogError($"[PostAtendimento] Erro ao criar atendimento: {ex}");
                 return StatusCode(500);
             }
         }

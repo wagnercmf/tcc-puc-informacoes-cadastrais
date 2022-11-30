@@ -3,7 +3,7 @@
     public enum ClassificacaoPlano
     {
         Enfermaria = 0,
-        Participacao = 1,
+        Apartamento = 1,
         Vip = 2
     }
 }

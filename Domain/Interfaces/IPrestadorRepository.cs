@@ -4,6 +4,8 @@ namespace Domain.Services.Interfaces
 {
     public interface IPrestadorRepository
     {
-        Task<List<Prestador>> GetPrestadorPorEspecialidade(string especialidade);
+        public Task<List<Prestador>> GetPrestadorPorEspecialidade(string especialidade);
+        public Task<Prestador> GetPrestadorPorCpf(string cpf);
+
     }
 }

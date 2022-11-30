@@ -14,5 +14,13 @@ namespace Infrastructure.Repositories
             var prestadores = prestadoresMock.GerarPrestadoresMock();
             return prestadores.Where(x => x.Especialidade == especialidade).ToList();
         }
+
+        public async Task<Prestador> GetPrestadorPorCpf(string cpf)
+        {
+            var prestadores = prestadoresMock.GerarPrestadoresMock();
+            if(prestadores.Any())
+                return prestadores.Where(x => x.Documento == cpf).ToList().FirstOrDefault();
+            return null;
+        }
     }
 }

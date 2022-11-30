@@ -1,9 +1,8 @@
-﻿using Domain.Entities;
-
+﻿using Application.Models;
 namespace Application.Interfaces
 {
     public interface IRegistrarAtendimentoUseCase
     {
-        public Task ExecuteAsync(string atendimentoInput);
+        public Task<bool> ExecuteAsync(AtendimentoInput atendimentoInput);
     }
 }
