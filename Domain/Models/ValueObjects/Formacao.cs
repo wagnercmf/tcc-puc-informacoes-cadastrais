@@ -6,12 +6,12 @@ namespace Domain.ValueObjects
         public Formacao(string instituicao, string curso, TipoFormacao tipoFormacao)
         {
             Instituicao = instituicao;
-            Curso = curso;
+            Profissao = curso;
             TipoFormacao = tipoFormacao;
         }
 
         public string Instituicao { get; set; }
-        public string Curso { get; set; }
+        public string Profissao { get; set; }
         public TipoFormacao TipoFormacao { get; set; }
     }
 }
